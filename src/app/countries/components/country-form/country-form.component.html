@@ -1,5 +1,8 @@
-<div class="col">
-    <form autocomplete="off" (ngSubmit)="search()">
-        <input type="text" name="search" class="form-control" placeholder="Searh country..." [(ngModel)]="term">
-    </form>
+<div class="row">
+    <div class="col">
+        <form autocomplete="off" (ngSubmit)="search()">
+            <input type="text" name="search" class="form-control" [placeholder]="placeholder" [(ngModel)]="term"
+             (input)="pressedKey()">
+        </form>
+    </div>
 </div>

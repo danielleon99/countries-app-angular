@@ -16,7 +16,7 @@ export class CountryService {
         private readonly httpClient: HttpClient
     ) { }
 
-    searchCountry(term: string): Observable<Country[]> {
-        return this.httpClient.get<Country[]>(`${this.apiURL}/name/${term}`)
+    searchCountry(term: string, route: string): Observable<Country[]> {
+        return this.httpClient.get<Country[]>(`${this.apiURL}/${route}/${term}`)
     };
 }

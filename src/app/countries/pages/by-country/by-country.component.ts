@@ -21,7 +21,7 @@ export class ByCountryComponent {
 
   search(term: string) {
     this.term = term;
-    this.countryService.searchCountry(this.term).subscribe(resp => {
+    this.countryService.searchCountry(this.term, 'name').subscribe(resp => {
       this.error = false;
       this.countries = resp;
     },
@@ -29,5 +29,9 @@ export class ByCountryComponent {
         this.error = true;
         this.countries = [];
       })
+  }
+
+  advice() {
+    this.error = false; 
   }
 }
