@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { Country } from "../interfaces";
 
 
 @Injectable({
@@ -15,9 +16,7 @@ export class CountryService {
         private readonly httpClient: HttpClient
     ) { }
 
-    searchCountry(term: string): Observable<any> {
-        return this.httpClient.get(`${this.apiURL}/name/${term}`).pipe(
-            catchError(err => of([]))
-        );
-    }
+    searchCountry(term: string): Observable<Country[]> {
+        return this.httpClient.get<Country[]>(`${this.apiURL}/name/${term}`)
+    };
 }

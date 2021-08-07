@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CountryService } from '../../services/country.service';
 
-import swal from 'sweetalert';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-by-country',
@@ -12,17 +12,22 @@ import swal from 'sweetalert';
 export class ByCountryComponent {
 
   term: string = '';
+  error: boolean = false;
+  countries: Country[] = [];
 
   constructor(
     private readonly countryService: CountryService
   ) { }
 
-  search() {
-
+  search(term: string) {
+    this.term = term;
     this.countryService.searchCountry(this.term).subscribe(resp => {
-      if (resp.length == 0)
-        swal('Error', 'error', 'error')
-    });
+      this.error = false;
+      this.countries = resp;
+    },
+      err => {
+        this.error = true;
+        this.countries = [];
+      })
   }
-
 }
